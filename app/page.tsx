@@ -4,6 +4,10 @@ export default function ComingSoonPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-300 via-yellow-400 to-orange-400 relative overflow-hidden retro-bg">
 
+      <div className="absolute inset-0 opacity-30">
+        <img src="/images/foret-druidique.jpg" alt="Forêt druidique mystique" className="w-full h-full object-cover" />
+      </div>
+
       {/* Effet de fumée violette */}
       <div className="absolute inset-0 smoke-effect"></div>
       <div className="absolute inset-0 smoke-effect-2" style={{ animationDelay: "3s" }}></div>
