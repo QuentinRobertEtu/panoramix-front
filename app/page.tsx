@@ -14,6 +14,8 @@ export default function ComingSoonPage() {
   const handleSubmit = () => {
     if (druidName != "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(destMail)) {
       sendMail({destMail, druidName});
+      setName("");
+      setEmail("");
     }
   }
 
