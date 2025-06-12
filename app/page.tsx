@@ -1,6 +1,22 @@
+"use client";
+
 import { Sparkles, Zap, Star } from "lucide-react"
 
+import { useState } from 'react';
+
+import { sendMail } from "@/lib/apiServise"
+
 export default function ComingSoonPage() {
+
+  const [druidName, setName] = useState("");
+  const [destMail, setEmail] = useState("");
+
+  const handleSubmit = () => {
+    if (druidName != "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(destMail)) {
+      sendMail({destMail, druidName});
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-300 via-yellow-400 to-orange-400 relative overflow-hidden retro-bg">
 
@@ -93,25 +109,22 @@ export default function ComingSoonPage() {
               />
             </div>
           </div>
-
-          <h1 className="text-6xl md:text-8xl font-bold text-orange-900 mb-4 retro-title tracking-wide drop-shadow-lg">
-            PANORAMIX
-          </h1>
-          <div className="text-2xl text-orange-800 font-bold tracking-widest retro-subtitle">.COM</div>
+          <img
+                src="/images/titre.png"
+                alt="titre Panoramix.com"
+                className="w-full h-full object-contain retro-image"
+              />
           <div className="mt-4 text-xl text-orange-700 font-bold retro-text">🧙‍♂️ DRUIDE OFFICIEL DU VILLAGE 🧙‍♂️</div>
         </div>
 
         {/* Message principal - Style rétro */}
         <div className="mb-8 max-w-4xl">
-          <h2 className="text-3xl md:text-4xl text-orange-900 mb-6 font-bold retro-heading">
-            🍯 LA POTION MAGIQUE EST EN PRÉPARATION ! 🍯
-          </h2>
 
           <div className="first-retro-card retro-parchment p-6 mb-6 relative overflow-hidden">
             <div className="retro-pattern"></div>
             <p className="text-xl text-orange-900 font-bold leading-relaxed retro-text relative z-10">
               Par Toutatis ! Le grand druide Panoramix concocte actuellement sa légendaire potion magique dans sa hutte
-              secrète de la forêt des Carnutes. Les ingrédients les plus rares sont en cours de cueillette sous la
+              secrète du Fort Vallières. Les ingrédients les plus rares sont en cours de cueillette sous la
               pleine lune...
             </p>
           </div>
@@ -126,16 +139,25 @@ export default function ComingSoonPage() {
           <div className="retro-card retro-parchment p-6 relative overflow-hidden">
             <div className="retro-pattern"></div>
             <h3 className="text-2xl text-orange-900 mb-4 font-bold retro-heading relative z-10">
-              🛡️ REJOIGNEZ LA RÉSISTANCE GAULOISE ! 🛡️
+              🔮 REJOIGNEZ LE CONSUL DRUIDIQUE ! 🔮
             </h3>
 
             <div className="space-y-4 relative z-10">
               <input
+                type="username"
+                placeholder="Ton pseudo magique..."
+                className="w-full p-4 text-lg retro-input text-orange-900 placeholder-orange-600 retro-text focus:outline-none"
+                value={druidName}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
                 type="email"
                 placeholder="Votre adresse de messager gaulois..."
                 className="w-full p-4 text-lg retro-input text-orange-900 placeholder-orange-600 retro-text focus:outline-none"
+                value={destMail}
+                onChange={(e) => setEmail(e.target.value)}
               />
-              <button className="w-full retro-button text-white font-bold text-lg py-4 px-6 transform hover:scale-105 transition-transform retro-text">
+              <button disabled={druidName=="" && destMail ==""} onClick={handleSubmit} className="w-full retro-button text-white font-bold text-lg py-4 px-6 transform hover:scale-105 transition-transform retro-text">
                 🗡️ DEVENIR UN IRRÉDUCTIBLE ! 🗡️
               </button>
             </div>
@@ -151,18 +173,18 @@ export default function ComingSoonPage() {
           <div className="retro-card retro-parchment p-6 text-center relative overflow-hidden">
             <div className="retro-pattern"></div>
             <div className="text-4xl mb-4 relative z-10 retro-emoji">🌿</div>
-            <h4 className="text-orange-900 font-bold text-xl mb-2 retro-heading relative z-10">RECETTES SECRÈTES</h4>
+            <h4 className="text-orange-900 font-bold text-xl mb-2 retro-heading relative z-10">FORMATION DRUIDIQUE</h4>
             <p className="text-orange-800 font-medium retro-text relative z-10">
-              Les formules magiques transmises depuis des générations
+              Devenez un druide puissant grâce à cette formation rapide de IV mois
             </p>
           </div>
 
           <div className="retro-card retro-parchment p-6 text-center relative overflow-hidden">
             <div className="retro-pattern"></div>
             <div className="text-4xl mb-4 relative z-10 retro-emoji">⚡</div>
-            <h4 className="text-orange-900 font-bold text-xl mb-2 retro-heading relative z-10">FORCE SURHUMAINE</h4>
+            <h4 className="text-orange-900 font-bold text-xl mb-2 retro-heading relative z-10">SAVOIR ANCESTRAL</h4>
             <p className="text-orange-800 font-medium retro-text relative z-10">
-              Découvrez les secrets de la potion qui rend invincible
+              Le Druictionnaire, citations et les formules magiques transmises depuis des générations
             </p>
           </div>
 
@@ -171,7 +193,7 @@ export default function ComingSoonPage() {
             <div className="text-4xl mb-4 relative z-10 retro-emoji">🏛️</div>
             <h4 className="text-orange-900 font-bold text-xl mb-2 retro-heading relative z-10">RÉSISTANCE ROMAINE</h4>
             <p className="text-orange-800 font-medium retro-text relative z-10">
-              Rejoignez la lutte contre l'envahisseur romain
+              Rejoignez la lutte contre l'envahisseur fachiste romain
             </p>
           </div>
         </div>
@@ -181,18 +203,15 @@ export default function ComingSoonPage() {
           <div className="retro-card retro-quote p-6 max-w-2xl mx-auto relative overflow-hidden">
             <div className="retro-pattern"></div>
             <p className="text-xl text-red-800 font-bold italic retro-text relative z-10">
-              "Ces Gaulois sont fous ! Mais leur potion magique est extraordinaire !"
+              "Salut à tous, c'est Clonnax !"
             </p>
-            <p className="text-red-700 font-medium mt-2 retro-text relative z-10">- Un centurion romain anonyme</p>
+            <p className="text-red-700 font-medium mt-2 retro-text relative z-10">- Clonnax, druide légendaire</p>
           </div>
         </div>
 
         {/* Footer gaulois - Style rétro */}
         <div className="text-orange-800 font-bold retro-text">
           <p className="text-lg">🏺 © 50 av. J.-C. Panoramix.com - Village des Irréductibles Gaulois 🏺</p>
-          <p className="mt-2 text-orange-700 font-medium italic">
-            "Le ciel nous tombe sur la tête ? Pas avec notre potion magique !"
-          </p>
         </div>
       </div>
 

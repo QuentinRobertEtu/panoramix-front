@@ -83,6 +83,9 @@
   font-style: normal;
 }
 
+body {
+  cursor: url('/images/curseur.png'), auto;
+}
 .font-medieval {
   font-family: "MedievalSharp", "Blackletter", "Old English", serif;
 }
@@ -228,7 +231,6 @@
 
 .body {
   background-image: url('../public/images/foret-druidique.jpg');
-  cursor: url('/cursor-personnalise.png'), auto;
 }
 
 /* Titre principal rétro */
