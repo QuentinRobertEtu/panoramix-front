@@ -1,12 +1,6 @@
 export async function sendMail(data: { destMail: string, druidName: string}) {
-    
-    const API_URL: string | undefined = process.env.API_URL;
 
-    if (!API_URL) {
-        throw new Error("API_URL n'est pas définie");
-    }
-
-    const res = await fetch(API_URL, {
+    const res = await fetch("https://panoramix-back-production.up.railway.app/api/mail", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
