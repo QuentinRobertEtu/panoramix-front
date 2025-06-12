@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Real Druid Only',
   generator: 'FunkyFoja',
   icons: {
-    icon: '/favicon.ico'
+    icon: '/images/favicon.ico'
   }
 }
 
